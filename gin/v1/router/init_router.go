@@ -4,11 +4,9 @@
 package router
 
 import (
-	v1 "acsupport/router/v1"
-
 	"github.com/gin-gonic/gin"
 )
 
-func Register(r *gin.Engine){
-	v1.PingApi(r)
+func InitRouter(r *gin.Engine) {
+	PingApi(r)
 }
