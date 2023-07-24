@@ -9,6 +9,9 @@
 ###################################################################
 #!/bin/bash
 
+# 遇到任何错误都直接退出
+set -e
+
 # 镜像类型 test 测试类型、release 生产类型
 IMAGE_TYPE=$1
 # Docker 仓库地址
@@ -16,7 +19,7 @@ DOCKER_REGISTRY_PROXY="registry.com"
 # 组
 DOCKER_GROUP="group"
 # 镜像名
-DOCKER_IMAGE_NAME="test"
+DOCKER_IMAGE_NAME="image_name"
 # 版本
 DOCKER_TAG=$(cat version)"-$IMAGE_TYPE"
 # 镜像名称
