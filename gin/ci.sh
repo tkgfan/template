@@ -1,3 +1,4 @@
+#!/bin/bash
 ###################################################################
 # 使用此脚本前必须设置 Docker 用户名称和密码对应的环境变量。它们分别为:
 # - DOCKER_NAME
@@ -5,12 +6,17 @@
 #
 # 使用示例:
 # chmod 755 ci.sh
-# ./ci.sh
+# ./ci.sh test
 ###################################################################
-#!/bin/bash
 
 # 遇到任何错误都直接退出
 set -e
+
+if [ "$IMAGE_TYPE" != "test" ]  &&  [ "$IMAGE_TYPE" != "release" ]
+  then
+    echo "未正确设置镜像类型 ./ci.sh [release 或 test 类型]"
+    exit 1
+fi
 
 # 镜像类型 test 测试类型、release 生产类型
 IMAGE_TYPE=$1
