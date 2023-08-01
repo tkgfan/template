@@ -3,7 +3,11 @@
 
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"acsupport/common/result"
+	"acsupport/v1/service"
+	"github.com/gin-gonic/gin"
+)
 
 // PingApi 注册测试路由
 func PingApi(r *gin.Engine) {
@@ -11,5 +15,6 @@ func PingApi(r *gin.Engine) {
 }
 
 func pong(c *gin.Context) {
-	c.Writer.Write([]byte("pong"))
+	resp, err := service.Pong(c.Request.Context())
+	result.HttpResult(c, resp, err)
 }
