@@ -15,6 +15,28 @@ const (
 	LogKey      = "Log"
 )
 
+// SetTraceLog 在上下文中设置链路日志
+func SetTraceLog(ctx context.Context, traceLogStr, source string) (res context.Context, err error) {
+	// 设置当前日志
+	curLog := model.NewLog()
+	curLog.Source = source
+	res = context.WithValue(ctx, LogKey, curLog)
+
+	tl := new(model.TraceLog)
+	if traceLogStr != "" {
+		// traceLogStr 不为空则上下文中的链路日志直接使用 traceLogStr
+		err = json.Unmarshal([]byte(traceLogStr), tl)
+		if err != nil {
+			return
+		}
+	}
+
+	// 设置链路日志
+	res = context.WithValue(res, TraceLogKey, tl)
+
+	return res, nil
+}
+
 // UpdateTraceLog 更新链路日志
 func UpdateTraceLog(ctx context.Context, traceLogStr, source string) (res context.Context, err error) {
 	var tl *model.TraceLog

@@ -35,7 +35,10 @@ func main() {
 func loadMiddleware(r *gin.Engine) {
 	// 链路日志
 	r.Use(middleware.TraceLog())
+	// 超时设置
 	r.Use(middleware.Timeout(time.Second * time.Duration(conf.Timeout)))
+	// 解析 Request 中 Header 数据并设置到上下文中
+	r.Use(middleware.SetCtxData())
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 }

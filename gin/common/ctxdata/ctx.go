@@ -7,7 +7,7 @@ import "context"
 
 const (
 	NoUID  int64 = 0
-	UIDKey       = "uid"
+	UIDKey       = "UID"
 )
 
 // GetUID 获取用户 uid

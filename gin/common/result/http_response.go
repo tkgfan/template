@@ -25,6 +25,10 @@ func HttpResult(c *gin.Context, data any, err error) {
 	// 合并 Trace Log
 	tlog.TraceLogMergeLog(c.Request.Context(), err)
 
+	// 返回链路日志
+	tlVal := tlog.GetTraceLogStr(c.Request.Context())
+	c.Writer.Header().Set(tlog.TraceLogKey, tlVal)
+
 	if structs.IsNil(err) {
 		c.JSON(http.StatusOK, model.NewSuccessResp(OK, OkMsg, data))
 		return
