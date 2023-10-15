@@ -7,6 +7,7 @@ import (
 	"acsupport/common/tlog"
 	"github.com/gin-gonic/gin"
 	"github.com/tkgfan/got/core/errors"
+	"github.com/tkgfan/got/core/logx"
 	"github.com/tkgfan/got/core/model"
 	"github.com/tkgfan/got/core/structs"
 	"net/http"
@@ -23,11 +24,11 @@ const (
 // HttpResult 统一处理返回结果
 func HttpResult(c *gin.Context, data any, err error) {
 	// 合并 Trace Log
-	tlog.TraceLogMergeLog(c.Request.Context(), err)
+	logx.TraceLogMergeLog(c.Request.Context(), err)
 
 	// 返回链路日志
-	tlVal := tlog.GetTraceLogStr(c.Request.Context())
-	c.Writer.Header().Set(tlog.TraceLogKey, tlVal)
+	tlVal := logx.GetTraceLogStr(c.Request.Context())
+	c.Writer.Header().Set(logx.TraceLogKey, tlVal)
 
 	if structs.IsNil(err) {
 		c.JSON(http.StatusOK, model.NewSuccessResp(OK, OkMsg, data))

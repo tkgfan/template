@@ -9,12 +9,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// PingApi 注册测试路由
-func PingApi(r *gin.Engine) {
-	r.GET("/ping", pong)
-}
-
-func pong(c *gin.Context) {
-	resp, err := service.Pong(c.Request.Context())
-	result.HttpResult(c, resp, err)
+// pingApi 注册测试路由
+func pingApi(r *gin.Engine) {
+	r.GET("/ping", func(c *gin.Context) {
+		resp, err := service.Pong(c.Request.Context())
+		result.HttpResult(c, resp, err)
+	})
 }

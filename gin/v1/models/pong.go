@@ -1,6 +1,6 @@
 // author gmfan
 // date 2023/8/1
-package model
+package models
 
 type PongVO struct {
 	Pong string `json:"pong"`

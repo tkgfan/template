@@ -3,12 +3,12 @@
 package service
 
 import (
-	"acsupport/v1/model"
+	"acsupport/v1/models"
 	"context"
 )
 
 func Pong(ctx context.Context) (resp any, err error) {
-	return &model.PongVO{
+	return &models.PongVO{
 		Pong: "pong",
 	}, nil
 }

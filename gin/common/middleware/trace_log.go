@@ -7,13 +7,14 @@ import (
 	"acsupport/common/result"
 	"acsupport/common/tlog"
 	"github.com/gin-gonic/gin"
+	"github.com/tkgfan/got/core/logx"
 )
 
 // TraceLog 处理链路日志
 func TraceLog() func(c *gin.Context) {
 	return func(c *gin.Context) {
 		// 设置链路日志
-		ctx, err := tlog.SetTraceLog(c.Request.Context(), c.Request.Header.Get(tlog.TraceLogKey), c.Request.URL.Path)
+		ctx, err := logx.SetTraceLog(c.Request.Context(), c.Request.Header.Get(logx.TraceLogKey), c.Request.URL.Path)
 		if err != nil {
 			tlog.PrintlnError(err)
 			result.HttpResult(c, nil, errs.NewCodeErrMgs(errs.ParamErr, "未设置链路日志"))
