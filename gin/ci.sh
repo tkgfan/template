@@ -12,14 +12,15 @@
 # 遇到任何错误都直接退出
 set -e
 
+# 镜像类型 test 测试类型、release 生产类型
+IMAGE_TYPE=$1
+
 if [ "$IMAGE_TYPE" != "test" ]  &&  [ "$IMAGE_TYPE" != "release" ]
   then
     echo "未正确设置镜像类型 ./ci.sh [release 或 test 类型]"
     exit 1
 fi
 
-# 镜像类型 test 测试类型、release 生产类型
-IMAGE_TYPE=$1
 # Docker 仓库地址
 DOCKER_REGISTRY_PROXY="registry.com"
 # 组
@@ -39,4 +40,4 @@ docker build --no-cache=false -t $DOCKER_IMAGE_NAME_TAG -f Dockerfile .
 # 推送镜像到仓库
 docker push $DOCKER_IMAGE_NAME_TAG
 # 执行完成
-echo "任务执行完成"
+echo "任务执行完成，镜像地址: "$DOCKER_IMAGE_NAME_TAG
