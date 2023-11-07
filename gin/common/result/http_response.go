@@ -4,7 +4,6 @@ package result
 
 import (
 	"acsupport/common/errs"
-	"acsupport/common/tlog"
 	"github.com/gin-gonic/gin"
 	"github.com/tkgfan/got/core/errors"
 	"github.com/tkgfan/got/core/logx"
@@ -35,7 +34,7 @@ func HttpResult(c *gin.Context, data any, err error) {
 		return
 	}
 
-	tlog.PrintlnError(errors.Json(err))
+	logx.Error(errors.Json(err))
 
 	// 处理错误
 	cause := errors.Cause(err)
