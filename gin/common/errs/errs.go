@@ -5,8 +5,8 @@ package errs
 import "fmt"
 
 type CodeErr struct {
-	Code uint32
-	Msg  string
+	Code uint32 `json:"code"`
+	Msg  string `json:"msg"`
 }
 
 func NewCodeErr(code uint32) *CodeErr {

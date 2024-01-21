@@ -34,7 +34,7 @@ func HttpResult(c *gin.Context, data any, err error) {
 		return
 	}
 
-	logx.Error(errors.Json(err))
+	logx.Error(err)
 
 	// 处理错误
 	cause := errors.Cause(err)
