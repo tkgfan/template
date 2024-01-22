@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.9.1
-	github.com/tkgfan/got v1.1.3
+	github.com/tkgfan/got v1.1.4
 )
 
 require (
