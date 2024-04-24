@@ -3,9 +3,9 @@
 package result
 
 import (
-	"acsupport/common/errs"
+	"acsupport/common/cerr"
 	"github.com/gin-gonic/gin"
-	"github.com/tkgfan/got/core/errors"
+	"github.com/tkgfan/got/core/errs"
 	"github.com/tkgfan/got/core/logx"
 	"github.com/tkgfan/got/core/model"
 	"github.com/tkgfan/got/core/structs"
@@ -22,25 +22,19 @@ const (
 
 // HttpResult 统一处理返回结果
 func HttpResult(c *gin.Context, data any, err error) {
-	// 合并 Trace Log
-	logx.TraceLogMergeLog(c.Request.Context(), err)
-
-	// 返回链路日志
-	tlVal := logx.GetTraceLogStr(c.Request.Context())
-	c.Writer.Header().Set(logx.TraceLogKey, tlVal)
-
 	if structs.IsNil(err) {
+		logx.TraceInfo(c.Request.Context())
 		c.JSON(http.StatusOK, model.NewSuccessResp(OK, OkMsg, data))
 		return
 	}
 
-	logx.Error(errors.Json(err))
+	logx.TraceError(c.Request.Context(), err)
 
 	// 处理错误
-	cause := errors.Cause(err)
-	if e, ok := errs.IsCodeErr(cause); ok {
+	cause := errs.Cause(err)
+	if e, ok := cerr.IsCodeErr(cause); ok {
 		c.JSON(http.StatusOK, model.NewFailResp(e.Code, e.Msg))
 	} else {
-		c.JSON(http.StatusOK, model.NewFailResp(errs.UnknownErr, errs.UnknownErrMsg))
+		c.JSON(http.StatusOK, model.NewFailResp(cerr.UnknownErr, cerr.UnknownErrMsg))
 	}
 }

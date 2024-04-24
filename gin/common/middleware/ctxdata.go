@@ -3,8 +3,8 @@
 package middleware
 
 import (
+	"acsupport/common/cerr"
 	"acsupport/common/ctxdata"
-	"acsupport/common/errs"
 	"acsupport/common/result"
 	"context"
 	"github.com/gin-gonic/gin"
@@ -21,7 +21,7 @@ func SetCtxData() func(c *gin.Context) {
 		if uidStr != "" {
 			uid, err := strconv.ParseInt(uidStr, 10, 64)
 			if err != nil {
-				result.HttpResult(c, nil, errs.NewCodeErr(errs.NotLogin))
+				result.HttpResult(c, nil, cerr.NewCodeErr(cerr.NotLogin))
 				c.Abort()
 				return
 			}

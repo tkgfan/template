@@ -15,12 +15,10 @@ var (
 )
 
 func init() {
-	ginTemplateInit()
+	ginTemplateInit(false)
 }
 
-func ginTemplateInit() {
-	must := false
-
+func ginTemplateInit(must bool) {
 	env.LoadStr(&Port, "PORT", must)
 	env.LoadInt(&Timeout, "TIMEOUT", must)
 	env.LoadStr(&LogLevel, "LOG_LEVEL", must)

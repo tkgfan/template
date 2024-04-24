@@ -1,6 +1,6 @@
 // author gmfan
 // date 2023/7/8
-package errs
+package cerr
 
 // 统一状态码不可修改
 const (

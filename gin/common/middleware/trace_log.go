@@ -3,8 +3,7 @@
 package middleware
 
 import (
-	"acsupport/common/errs"
-	"acsupport/common/result"
+	"context"
 	"github.com/gin-gonic/gin"
 	"github.com/tkgfan/got/core/logx"
 )
@@ -13,13 +12,9 @@ import (
 func TraceLog() func(c *gin.Context) {
 	return func(c *gin.Context) {
 		// 设置链路日志
-		ctx, err := logx.SetTraceLog(c.Request.Context(), c.Request.Header.Get(logx.TraceLogKey), c.Request.URL.Path)
-		if err != nil {
-			logx.Error(err)
-			result.HttpResult(c, nil, errs.NewCodeErrMgs(errs.ParamErr, "未设置链路日志"))
-			c.Abort()
-			return
-		}
+		tid := c.Request.Header.Get(logx.TraceCtxKey)
+		tc := logx.NewTraceCtx(tid, c.ClientIP(), c.Request.URL.Path)
+		ctx := context.WithValue(c.Request.Context(), logx.TraceCtxKey, tc)
 		c.Request = c.Request.WithContext(ctx)
 		c.Next()
 	}

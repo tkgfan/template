@@ -4,7 +4,7 @@
 package router
 
 import (
-	"acsupport/common/errs"
+	"acsupport/common/cerr"
 	"acsupport/common/result"
 	"context"
 	"github.com/gin-gonic/gin"
@@ -18,7 +18,7 @@ func InitRouter(r *gin.Engine) {
 func jsonHandle(c *gin.Context, req any, handle func(ctx context.Context) (resp any, err error)) {
 	// 解析请求参数
 	if err := c.ShouldBindJSON(req); err != nil {
-		result.HttpResult(c, nil, errs.NewCodeErr(errs.ParamErr))
+		result.HttpResult(c, nil, cerr.NewCodeErr(cerr.ParamErr))
 		return
 	}
 
