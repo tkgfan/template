@@ -1,5 +1,14 @@
 # Gin 项目模板
 
+## 配置说明
+
+### 环境变量
+
+- MODEL: 项目运行环境（dev、test、prod）
+- PORT: 端口号（默认 8888）
+- TIMEOUT: 请求超时时间（默认 60000 毫秒）
+- LOG_LEVEL: 日志级别（info、warn、error、panic 默认 info）
+
 ## 目录说明
 
 - common: 通用工具代码
