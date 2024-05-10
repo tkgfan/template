@@ -8,6 +8,7 @@ import (
 	"acsupport/conf"
 	"acsupport/v1/router"
 	"github.com/tkgfan/got/core/env"
+	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -29,7 +30,16 @@ func main() {
 	router.InitRouter(r)
 
 	// 运行服务器
-	r.Run(":" + conf.Port)
+	srv := &http.Server{
+		Addr:         ":" + conf.Port,
+		Handler:      r,
+		ReadTimeout:  time.Duration(conf.Timeout) * time.Millisecond,
+		WriteTimeout: time.Duration(conf.Timeout) * time.Millisecond,
+	}
+	err := srv.ListenAndServe()
+	if err != nil {
+		panic(err)
+	}
 }
 
 func loadMiddleware(r *gin.Engine) {
