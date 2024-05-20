@@ -14,8 +14,8 @@ func InitRouter(r *gin.Engine) {
 	pingApi(r)
 }
 
-// 处理 JSON 请求
-func jsonHandle(c *gin.Context, req any, handle func(ctx context.Context) (resp any, err error)) {
+// JsonHandle 处理 JSON 请求
+func JsonHandle(c *gin.Context, req any, handle func(ctx context.Context) (resp any, err error)) {
 	// 解析请求参数
 	if err := c.ShouldBindJSON(req); err != nil {
 		result.HttpResult(c, nil, cerr.NewCodeErr(cerr.ParamErr))
