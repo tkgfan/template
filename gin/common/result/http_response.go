@@ -6,9 +6,9 @@ import (
 	"acsupport/common/cerr"
 	"github.com/gin-gonic/gin"
 	"github.com/tkgfan/got/core/errs"
-	"github.com/tkgfan/got/core/logx"
 	"github.com/tkgfan/got/core/model"
 	"github.com/tkgfan/got/core/structs"
+	"github.com/tkgfan/got/core/tlog"
 	"net/http"
 )
 
@@ -23,12 +23,12 @@ const (
 // HttpResult 统一处理返回结果
 func HttpResult(c *gin.Context, data any, err error) {
 	if structs.IsNil(err) {
-		logx.TraceInfo(c.Request.Context())
+		tlog.CtxInfo(c.Request.Context(), "OK")
 		c.JSON(http.StatusOK, model.NewSuccessResp(OK, OkMsg, data))
 		return
 	}
 
-	logx.TraceError(c.Request.Context(), err)
+	tlog.CtxErrorf(c.Request.Context(), "%+v", err)
 
 	// 处理错误
 	cause := errs.Cause(err)

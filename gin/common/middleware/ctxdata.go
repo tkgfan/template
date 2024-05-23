@@ -8,6 +8,7 @@ import (
 	"acsupport/common/result"
 	"context"
 	"github.com/gin-gonic/gin"
+	"github.com/tkgfan/got/core/tlog"
 	"strconv"
 )
 
@@ -21,6 +22,7 @@ func SetCtxData() func(c *gin.Context) {
 		if uidStr != "" {
 			uid, err := strconv.ParseInt(uidStr, 10, 64)
 			if err != nil {
+				tlog.CtxErrorf(ctx, "uidStr: %s,err: %+v", uidStr, err)
 				result.HttpResult(c, nil, cerr.NewCodeErr(cerr.NotLogin))
 				c.Abort()
 				return

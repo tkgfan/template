@@ -58,6 +58,8 @@ github.com/stretchr/testify v1.8.3 h1:RP3t2pwF7cMEbC1dqtB6poj3niw/9gnV4Cjg5oW5gt
 github.com/stretchr/testify v1.8.3/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
 github.com/tkgfan/got v1.1.13 h1:1jUBKEDz6YmaJJ5TKssjiErBu06OFJNVeQVNV0Dvok4=
 github.com/tkgfan/got v1.1.13/go.mod h1:Sv8PlUOIyMmELtABa6Jtm20EEEHZG1D2II2z0zrmAcQ=
+github.com/tkgfan/got v1.1.18 h1:KfxLYVBetCdQsdw+PWyx8QJv7CTBWAoi1Ho4tWpz75Y=
+github.com/tkgfan/got v1.1.18/go.mod h1:Sv8PlUOIyMmELtABa6Jtm20EEEHZG1D2II2z0zrmAcQ=
 github.com/twitchyliquid64/golang-asm v0.15.1 h1:SU5vSMR7hnwNxj24w34ZyCi/FmDZTkS4MhqMhdFk5YI=
 github.com/twitchyliquid64/golang-asm v0.15.1/go.mod h1:a1lVb/DtPvCB8fslRZhAngC2+aY1QWCk3Cedj/Gdt08=
 github.com/ugorji/go/codec v1.2.11 h1:BMaWp1Bb6fHwEtbplGBGJ498wD+LKlNSl25MjdZY4dU=
