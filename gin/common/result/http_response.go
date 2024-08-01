@@ -3,7 +3,7 @@
 package result
 
 import (
-	"acsupport/common/cerr"
+	"anifun/common/cerr"
 	"github.com/gin-gonic/gin"
 	"github.com/tkgfan/got/core/errs"
 	"github.com/tkgfan/got/core/model"

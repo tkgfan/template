@@ -17,11 +17,7 @@ func TraceLog() func(c *gin.Context) {
 			tid = tlog.NewTid()
 		}
 		ctx := context.WithValue(c.Request.Context(), tlog.CtxTidKey, tid)
-		tlog.CtxInfof(ctx, "ip=%s path=%s", c.ClientIP(), c.Request.URL.Path)
 		c.Request = c.Request.WithContext(ctx)
 		c.Next()
-		if c.Writer.Status() != 200 {
-			tlog.CtxErrorf(ctx, "ip=%s path=%s status=%d", c.ClientIP(), c.Request.URL.Path, c.Writer.Status())
-		}
 	}
 }

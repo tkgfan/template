@@ -1,4 +1,4 @@
-module acsupport
+module anifun
 
 go 1.21
 

@@ -4,9 +4,9 @@
 package main
 
 import (
-	"acsupport/common/middleware"
-	"acsupport/conf"
-	"acsupport/v1/router"
+	"anifun/common/middleware"
+	"anifun/conf"
+	"anifun/router"
 	"github.com/tkgfan/got/core/env"
 	"net/http"
 	"time"

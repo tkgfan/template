@@ -3,7 +3,7 @@
 package service
 
 import (
-	"acsupport/v1/models"
+	"anifun/models"
 	"context"
 )
 

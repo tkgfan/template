@@ -4,8 +4,8 @@
 package router
 
 import (
-	"acsupport/common/cerr"
-	"acsupport/common/result"
+	"anifun/common/cerr"
+	"anifun/common/result"
 	"context"
 	"github.com/gin-gonic/gin"
 )
