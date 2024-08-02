@@ -17,7 +17,13 @@ func TraceLog() func(c *gin.Context) {
 			tid = tlog.NewTid()
 		}
 		ctx := context.WithValue(c.Request.Context(), tlog.CtxTidKey, tid)
+		// 打印请求信息，需要注意的是此处 ip 是上一级服务 ip 地址
+		tlog.CtxInfof(ctx, "ip=%s path=%s", c.RemoteIP(), c.Request.URL.Path)
 		c.Request = c.Request.WithContext(ctx)
 		c.Next()
+		if c.Writer.Status() != 200 {
+			// 异常请求
+			tlog.CtxErrorf(ctx, "ip=%s path=%s status=%d", c.RemoteIP(), c.Request.URL.Path, c.Writer.Status())
+		}
 	}
 }

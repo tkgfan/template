@@ -16,7 +16,6 @@ RUN go build -ldflags "-s -w" -o /app/app main.go
 FROM alpine:latest
 
 WORKDIR /app
-ENV TZ Asia/Shanghai
 COPY --from=builder /app/app /app/app
 
 EXPOSE 8888
