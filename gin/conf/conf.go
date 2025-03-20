@@ -9,9 +9,10 @@ import (
 )
 
 var (
-	Port     = "8888"
-	Timeout  = 60 * 1000
-	LogLevel = tlog.InfoLevel
+	Port      = "8888"
+	Timeout   = 60 * 1000
+	LogLevel  = tlog.InfoLevel
+	ApiPrefix = ""
 )
 
 func init() {

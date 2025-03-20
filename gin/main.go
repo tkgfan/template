@@ -49,5 +49,10 @@ func loadMiddleware(r *gin.Engine) {
 	r.Use(middleware.Timeout(time.Millisecond * time.Duration(conf.Timeout)))
 	// 解析 Request 中 Header 数据并设置到上下文中
 	r.Use(middleware.SetCtxData())
+	// 非开发环境
+	if env.CurModel != env.DevModel {
+		// 校验签名
+		r.Use(middleware.VerifyGatewayToken())
+	}
 	r.Use(gin.Recovery())
 }
